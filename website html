@@ -1,0 +1,121 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom T-Shirts | TeeShopper</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        header { background-color: #333; color: white; padding: 10px 0; text-align: center; }
+        nav ul { list-style-type: none; margin: 0; padding: 0; display: flex; justify-content: center; }
+        nav ul li { margin: 0 20px; }
+        nav ul li a { color: white; text-decoration: none; }
+        .banner { background-color: #f4f4f4; padding: 50px 20px; text-align: center; }
+        .products { display: flex; justify-content: space-around; padding: 20px; }
+        .product { width: 30%; background-color: #fff; padding: 20px; border: 1px solid #ddd; text-align: center; }
+        footer { background-color: #333; color: white; padding: 10px 0; text-align: center; }
+        .form-container { padding: 20px; max-width: 600px; margin: auto; }
+        label { display: block; margin-top: 10px; }
+        input, textarea { width: 100%; padding: 8px; margin-top: 5px; }
+        input[type="submit"] { background-color: #333; color: white; border: none; cursor: pointer; }
+        input[type="submit"]:hover { background-color: #555; }
+        .notice { background-color: #f4f4f4; border: 1px solid #ddd; padding: 20px; text-align: center; margin-top: 20px; }
+    </style>
+    <script>
+        let profileCreated = false; // Set this to true once the profile is created
+
+        function checkProfile() {
+            if (!profileCreated) {
+                alert("You must create a profile before accessing your portfolio.");
+                window.location.href = "#seller-profile"; // Redirect to profile creation
+            }
+        }
+    </script>
+</head>
+<body>
+
+<header>
+    <h1>kidShopper - Design & Sell Custom T-Shirts</h1>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#seller-profile">Create Profile</a></li>
+            <li><a href="#portfolio" onclick="checkProfile()">Create Portfolio</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="banner">
+    <h2>Create and Sell Your Custom T-Shirt Design Today!</h2>
+    <p>No inventory required. Print on demand.</p>
+</section>
+
+<section class="profile-notice" id="profile-notice">
+    <div class="notice">
+        <h2>Profile Created Successfully!</h2>
+        <p>Your seller profile has been created. You can now start uploading designs and managing your store.</p>
+        <a href="#portfolio" style="text-decoration: none; color: white; background-color: #333; padding: 10px 20px; border-radius: 5px;">Create Your Portfolio</a>
+    </div>
+</section>
+
+<section class="products" id="products">
+    <div class="product">
+        <h3>Product 1</h3>
+        <p>Design your custom t-shirt and design.</p>
+    </div>
+    <div class="product">
+        <h3>Product 2</h3>
+        <p>High-quality prints on demand.</p>
+    </div>
+    <div class="product">
+        <h3>Product 3</h3>
+        <p>Sell directly and earn profits.</p>
+    </div>
+</section>
+
+<section class="seller-profile" id="seller-profile">
+    <h2>Create Your Seller Profile</h2>
+    <div class="form-container">
+        <form action="/submit-seller" method="POST" onsubmit="profileCreated = true;"> <!-- Set profileCreated to true upon submission -->
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="design">Design:</label>
+            <input type="text" id="design" name="design" required>
+
+            <input type="submit" value="Create Profile">
+        </form>
+    </div>
+</section>
+
+<section class="portfolio" id="portfolio">
+    <h2>Create Your Portfolio</h2>
+    <div class="form-container">
+        <form action="/upload-design" method="POST" enctype="multipart/form-data">
+            <label for="portfolio-name">Portfolio Name:</label>
+            <input type="text" id="portfolio-name" name="portfolio-name" required>
+
+            <label for="portfolio-description">Portfolio Description:</label>
+            <textarea id="portfolio-description" name="portfolio-description" rows="4" placeholder="Describe your portfolio..."></textarea>
+
+            <label for="design-upload">Upload Your Design (PNG, JPG):</label>
+            <input type="file" id="design-upload" name="design-upload" accept=".png, .jpg, .jpeg" required>
+            
+            <label for="design-price">Set Your Price (USD):</label>
+            <input type="number" id="design-price" name="design-price" min="1" step="0.01" required>
+
+            <input type="submit" value="Create Portfolio">
+        </form>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2024 kidShopper | All rights reserved</p>
+</footer>
+
+</body>
+</html>
